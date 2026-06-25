@@ -1,0 +1,8 @@
+{
+  "name": "Dawwer: Smart Recycling",
+  "description": "An AI-powered Arabic platform featuring waste scanning, gamified rewards, and a luxury eco-friendly design for sustainable living.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
