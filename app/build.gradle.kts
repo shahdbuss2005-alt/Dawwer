@@ -117,3 +117,26 @@ dependencies {
   "ksp"(libs.androidx.room.compiler)
   "ksp"(libs.moshi.kotlin.codegen)
 }
+
+tasks.register("copyApk") {
+  val srcFile = layout.projectDirectory.file("build/outputs/apk/debug/app-debug.apk").asFile
+  val rootApk = layout.projectDirectory.file("../dawwer.apk").asFile
+  val rootZip = layout.projectDirectory.file("../dawwer.zip").asFile
+
+  doLast {
+    if (srcFile.exists()) {
+      srcFile.copyTo(rootApk, overwrite = true)
+      srcFile.copyTo(rootZip, overwrite = true)
+      println("Successfully copied APK to root as dawwer.apk and dawwer.zip!")
+    } else {
+      println("APK file not found at: ${srcFile.absolutePath}")
+    }
+  }
+}
+
+tasks.configureEach {
+  if (name == "assembleDebug") {
+    finalizedBy("copyApk")
+  }
+}
+
